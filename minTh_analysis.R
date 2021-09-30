@@ -3,9 +3,9 @@ setwd("~/Downloads/Boolean_COVID")
 library(BoolNet)
 library(BoolNetPerturb)
 
-net <-  loadNetwork("data_raw/minTh_net.csv")
-lab <- read.csv("data_raw/minTh_label.csv")
-env <- read.csv("data_raw/minTh_environment.csv")
+net <-  loadNetwork("minTh_net.csv")
+lab <- read.csv("minTh_label.csv")
+env <- read.csv("minTh_environment.csv")
 
 run.net <- function(net, condition) {
   print(env[condition,])

@@ -1,0 +1,10 @@
+IFNGe,IL12e,IL2e,IL4e,IL6e,TGFBe,IL10e
+Basal,0,0,0,0,0,0,0
+pro-Th1,1,1,0,0,0,0,0
+pro-Th2,0,0,1,1,0,0,0
+pro-Th17,0,0,0,0,1,1,0
+pro-Treg,0,0,1,0,0,1,0
+Pro-Tr,0,0,0,0,0,1,1
+CoV-mod,1,1,0,0,0,0,0
+CoV-sev,1,1,0,1,1,0,0
+CoV-sev-TGFB,1,1,0,1,1,1,0
