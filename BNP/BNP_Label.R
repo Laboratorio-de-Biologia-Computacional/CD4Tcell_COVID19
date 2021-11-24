@@ -43,6 +43,8 @@ labelState <- function(state, node.names, label.rules, sep='') {
 #' @param sep string to separate the labels when more than one can be applied to the state, 
 #'        if NULL it will return the label of each state in a cycle separately
 #'        if string it will paste the states of a cycle with sep
+#' @param simplify simplify cyclic attractors to only include unique states
+#' @param mark string to indicate that a label has been simplified
 #' @return List of strings corresponding to the label of the attractor, if an attractor has multiple states it will return a list of strings for that state.
 #' @seealso \code{\link{labelState}} which this function wraps
 #' 
@@ -51,7 +53,7 @@ labelState <- function(state, node.names, label.rules, sep='') {
 #' labelAttractors(attr, net$genes, labels, rules, sep='')
 #' 
 #' @export
-labelAttractors <- function(attr, label.rules, node.names=NULL, sep="/") {
+labelAttractors <- function(attr, label.rules, node.names=NULL, sep="/", simplify=FALSE, mark="*") {
   # takes an attractors object created by BoolNet
   # returns a list of the labels for each attractor in order.
   # If an attractor has multiple states it will return a label for each state.
@@ -66,7 +68,27 @@ labelAttractors <- function(attr, label.rules, node.names=NULL, sep="/") {
     if (!is.null(sep)) { label <- paste(label, collapse=sep) }
     res <- append(res, list(label))
   }
+  if (simplify) {
+      res <- sapply(res, simplifyLabel, sep=sep, simplify=simplify, mark=mark)
+  }
   unlist(res)
+}
+
+
+#' Simplify a label by reducing cyclic attractors and replacing target strings
+#' 
+#' @keywords internal
+#' @export
+simplifyLabel <- function(old, sep="/", mark="*") {
+    # separate and simplify
+    new <- stringr::str_split(old,sep)
+    new <- sort(unique(new[[1]]))
+    new <- paste(new, collapse=sep)
+    # mark the ones that have changed
+    if (! is.null(mark)) {
+        if (new!=old)   new <- paste(c(new,mark), collapse='')
+    }
+    new
 }
 
 

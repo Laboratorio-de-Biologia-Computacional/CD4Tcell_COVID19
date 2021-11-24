@@ -1,18 +1,17 @@
 targets, functions
-TBET,  TCR & ((IFNG | ((IL12e & ! SOCS3) &  ! (IL21 | IL4 | IL10)) )  | TBET) &  ! (IL4  | GATA3 | IL21)
+TBET,  TCR & ((IFNG | ((IL12e & ! SOCS3) &  ! (IL6 | IL4 | IL10)) )  | TBET) &  ! (IL4  | GATA3 | IL6)
 IFNG,  TCR & (IFNGe | ((IFNG | TBET) & ! (GATA3 | TGFB))) &  ! ((SOCS1 &! IFNG) | (SOCS3 &! IFNG))
-GATA3, TCR & ((IL2 & IL4)  | GATA3) &  ! (TBET | TGFB | IL21 | IFNG)
+GATA3, TCR & ((IL2 & IL4)  | GATA3) &  ! (TBET | TGFB | IL6 | IFNG)
 IL2,   TCR & (IL2e | (IL2 &  ! FOXP3)) &  ! ((SOCS1 &! IL2) | (SOCS2 &! (FOXP3 | IL2))
-IL4,   TCR & (IL4e | (GATA3 & (IL2 | IL4) &  ! TBET)) &  ! ((SOCS1 &! IL2) | SOCS5)
-RORGT, TCR & (IL21 & TGFB) &  ! (TBET | FOXP3 | GATA3) &  ! (SOCS3 | IL2)
-IL21,  TCR & (IL6e| IL21 | RORGT) &  ! (SOCS3 | IL2)
-FOXP3, TCR & (IL2 & (TGFB | FOXP3)) &  ! (IL21 | RORGT)
-TGFB,  TCR & (TGFBe | ((TGFB | FOXP3) &  ! IL21 ))
-IL10,  TCR & (IL10e | (IL10 & (IFNG | IL21 | TGFB | GATA3 )))
-SOCS1, IFNG | IL6e | IL21 | IL2
+IL4,   TCR & (IL4e | (GATA3 & (IL2 | IL4) &  ! TBET)) &  ! ((SOCS1 &! IL2) | IL12e)
+RORGT, TCR & (IL6 & TGFB) &  ! (TBET | FOXP3 | GATA3) &  ! (SOCS3 | IL2)
+IL6,  TCR & (IL6e| IL6 | RORGT) &  ! (SOCS3 | IL2)
+FOXP3, TCR & (IL2 & (TGFB | FOXP3)) &  ! (IL6 | RORGT)
+TGFB,  TCR & (TGFBe | ((TGFB | FOXP3) &  ! IL6 ))
+IL10,  TCR & (IL10e | (IL10 & (IFNG | IL6 | TGFB | GATA3 )))
+SOCS1, IFNG | IL6e | IL6 | IL2
 SOCS2, IFNG | IL2 | IL10
 SOCS3, IFNG | IL4 | IL10
-SOCS5, IL12e
 IFNGe, IFNGe
 IL12e, IL12e
 IL2e,  IL2e
