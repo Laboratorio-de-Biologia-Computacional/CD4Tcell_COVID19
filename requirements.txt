@@ -1,0 +1,19 @@
+# This is not a standar format, because R+python+conda
+
+# python 
+conda install pandas
+conda install -c conda-forge jupyterlab
+conda install -c anaconda fonts-anaconda
+
+# R
+conda install -c r r-xml
+conda install -c r r-cairo
+> install.packages('dplyr')
+> install.packages('BoolNet')
+> install.packages('writexl')
+> install.packages('alluvial')
+
+
+
+
+

@@ -21,7 +21,7 @@ plot.attr.table <- function(attr.table, title='', file.name=NULL, selected.nodes
     attr.plot <- attr.plot[with(attr.table, order(label,attractor,state)),]
     
     if (!is.null(file.name)) {
-        setEPS(); postscript(file.name)
+        pdf(file.name)
     }
     attr.plot.steady <- attr.plot[attr.plot$size==1,]
     attr.plot.steady <- subset(attr.plot.steady, select=-c(attractor,state,size))
@@ -36,8 +36,8 @@ plot.attr.table <- function(attr.table, title='', file.name=NULL, selected.nodes
     if (!is.null(file.name)) { dev.off() }
     
     if (!is.null(file.name)) {
-        file.name <- str_replace(file.name, ".eps", "_cycles.eps")
-        setEPS(); postscript(file.name)
+        file.name <- str_replace(file.name, ".pdf", "_cycles.pdf")
+        pdf(file.name)
     }
     attr.plot.cycle <- attr.plot[attr.plot$size>1,]
     if (nrow(attr.plot.cycle)>0) {
@@ -73,7 +73,7 @@ f.cfm.table <- function(net, labels, file.name, time=1, replace=list()) {
 
 plot.cfm.alluvial <- function(cfm, file.name=NULL, title='', ignore='Naive') {
     if (!is.null(file.name)) {
-        setEPS(); cairo_ps(file.name)
+        pdf(file.name)
         }
     cfm <- cfm[cfm$initial!=ignore,]
     cfm2d <- cfm %>% group_by(initial, final) %>%
@@ -101,7 +101,7 @@ plot.node.transitions <- function(cfm, file.name=NULL, title='', normalize=T) {
     #print(node.transitions)
     # plot plot
     if (!is.null(file.name)) {
-        setEPS(); postscript(file.name)
+        pdf(file.name)
     }
     barplot(t(as.matrix( node.transitions )),
             main=title, xlab='nodes', ylab='% of transitions caused when perturbed',
@@ -135,7 +135,7 @@ f.mut.plot <- function(mutants, file.name=NULL, title='', normalize=T) {
         color <- colfunc(10)
     }
     if (!is.null(file.name)) {
-        setEPS(); postscript(file.name)
+        pdf(file.name)
     }
     mutants
     heatmap(t(as.matrix( mutants )),
